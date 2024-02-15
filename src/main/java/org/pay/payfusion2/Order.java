@@ -6,6 +6,10 @@ public interface Order {
 
     String[] createOrder() throws IOException;
 
+    String getName();
 
+    String getDescription();
+
+    double getValue();
 
 }

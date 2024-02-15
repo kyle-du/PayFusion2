@@ -26,6 +26,7 @@ class PayPalOrder implements Order {
         orderID = responses[0];
         orderLink = responses[1];
     }
+
     public String[] createOrder() throws IOException {
         String[] responses = new String[2];
         URL url = new URL("https://api-m.sandbox.paypal.com/v2/checkout/orders");
@@ -83,6 +84,7 @@ class PayPalOrder implements Order {
         String response = s.hasNext() ? s.next() : "";
 
         JSONObject obj = new JSONObject(response.toString());
+        System.out.println(response);
         responses[0] = obj.getString("id");
         responses[1] = obj.getJSONArray("links").getJSONObject(1).getString("href");
         return responses;
