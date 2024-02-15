@@ -10,8 +10,9 @@ public class Main {
         Constants.print();
 //        PayPalOrder testOrder = new PayPalOrder("Kaival", "Sammy Shah's bro", 1, 999);
 //        System.out.println(testOrder.getOrderLink() + " " + testOrder.getOrderID());
+//
+        PayPalOrder.captureAnyOrder("4LJ092903D5166432");
 
-        PayPalOrder.captureAnyOrder("14G88565E10899211");
     }
 }
 
