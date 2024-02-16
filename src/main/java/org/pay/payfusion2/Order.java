@@ -4,12 +4,12 @@ import java.io.IOException;
 
 public interface Order {
 
-    String[] createOrder() throws IOException;
+    long getQuantity();
 
-    String getName();
+    String getID();
 
-    String getDescription();
+    String getCheckoutURL();
 
-    double getValue();
+    MasterProduct getProduct();
 
 }

@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
-class PayPalOrder implements Order {
+class PayPalOrder {
     private final String name;
     private final String description;
     private final int quantity;
@@ -119,7 +119,7 @@ class PayPalOrder implements Order {
         return description;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 

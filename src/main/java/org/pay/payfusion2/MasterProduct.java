@@ -16,12 +16,12 @@ public class MasterProduct {
     private final double price;
     private final String currencyCode; //usd
     private final List<String> imageURLs;
-
     private final Product stripeProduct;
     private final Price stripePrice;
+    private final String stripePriceID;
 
-
-    public MasterProduct(String name, String description, int price, String currencyCode, List<String> imageURLs) {
+    //default
+    public MasterProduct(String name, String description, double price, String currencyCode, List<String> imageURLs) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -29,15 +29,59 @@ public class MasterProduct {
         this.imageURLs = imageURLs;
         this.stripeProduct = createStripeProduct();
         this.stripePrice = createStripePrice();
+        this.stripePriceID = stripePrice.getId();
+    }
+
+    //default imageless
+    public MasterProduct(String name, String description, double price, String currencyCode) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.currencyCode = currencyCode;
+        this.imageURLs = null;
+        this.stripeProduct = createStripeProduct();
+        this.stripePrice = createStripePrice();
+        this.stripePriceID = stripePrice.getId();
+    }
+
+    //price id
+    public MasterProduct(String name, String description, double price, String currencyCode, List<String> imageURLs, String priceId) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.currencyCode = currencyCode;
+        this.imageURLs = imageURLs;
+        this.stripeProduct = null;
+        this.stripePrice = null;
+        this.stripePriceID = priceId;
+    }
+
+    //price id imageless
+    public MasterProduct(String name, String description, double price, String currencyCode, String priceId) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.currencyCode = currencyCode;
+        this.imageURLs = null;
+        this.stripeProduct = null;
+        this.stripePrice = null;
+        this.stripePriceID = priceId;
     }
 
     private Product createStripeProduct() {
-        ProductCreateParams params =
-                ProductCreateParams.builder()
-                        .setName(name)
-                        .setDescription(description)
-                        .addAllImage(imageURLs)
-                        .build();
+        ProductCreateParams params;
+        if (imageURLs == null) {
+            params = ProductCreateParams.builder()
+                            .setName(name)
+                            .setDescription(description)
+                            .build();
+        } else {
+            params = ProductCreateParams.builder()
+                            .setName(name)
+                            .setDescription(description)
+                            .addAllImage(imageURLs)
+                            .build();
+        }
         try {
             return Product.create(params);
         } catch (StripeException e) {
@@ -50,12 +94,7 @@ public class MasterProduct {
         PriceCreateParams params =
                 PriceCreateParams.builder()
                         .setCurrency(currencyCode)
-                        .setUnitAmountDecimal(BigDecimal.valueOf(price))
-                        .setRecurring(
-                                PriceCreateParams.Recurring.builder()
-                                        .setInterval(PriceCreateParams.Recurring.Interval.MONTH)
-                                        .build()
-                        )
+                        .setUnitAmountDecimal(BigDecimal.valueOf(price * 100))
                         .setProduct(stripeProduct.getId())
                         .build();
         try {
@@ -92,5 +131,9 @@ public class MasterProduct {
 
     public Price getStripePrice() {
         return stripePrice;
+    }
+
+    public String getStripePriceID() {
+        return stripePriceID;
     }
 }
