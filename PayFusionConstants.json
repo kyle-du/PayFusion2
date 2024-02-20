@@ -1,0 +1,17 @@
+{
+  "PayPal": {
+    "PYPL_CLIENT_ID": "AUv8rrc_P-EbP2E0mpb49BV7rFt3Usr-vdUZO8VGOnjRehGHBXkSzchr37SYF2GNdQFYSp72jh5QUhzG",
+    "PYPL_CLIENT_SECRET": "EMnAWe06ioGtouJs7gLYT9chK9-2jJ--7MKRXpI8FesmY_2Kp-d_7aCqff7M9moEJBvuXoBO4clKtY0v"
+  },
+
+  "Stripe": {
+    "STRIPE_KEY": "sk_test_51NU0lzBwTTupQWshxQOCxkwnexTTTplKl9OAoikvptENjiXtEMhzWfaFu5vWQmrrkbIImiNFpYqPJjNdYkm6zREI00ekEnYr2j"
+  },
+
+  "Square": {
+    "SQUARE_CLIENT_ID": "sandbox-sq0idb-c4vwZ1MvaklR_wcuyBtKqA",
+    "SQUARE_CLIENT_SECRET": "sandbox-sq0csb-NRzzzbOci0gBYGLpH9Y8ad1a8L_POnLQW67al84D04E",
+    "SQUARE_AUTH_CODE": "sandbox-sq0cgb-QyukU-mDYw1cU6GlTlkc5A",
+    "SQUARE_ACCESS_TOKEN": "EAAAl554QcIoAp7zHwuQH2Bnhg7FSxRMYXhQZVdSqrVOTW5zc4SVOHrF22MBkM_g"
+  }
+}

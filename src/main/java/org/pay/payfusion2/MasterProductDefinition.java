@@ -9,7 +9,7 @@ import com.stripe.param.ProductCreateParams;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class MasterProduct {
+public class MasterProductDefinition {
 
     private final String name;
     private final String description;
@@ -21,7 +21,7 @@ public class MasterProduct {
     private final String stripePriceID;
 
     //default
-    public MasterProduct(String name, String description, double price, String currencyCode, List<String> imageURLs) {
+    public MasterProductDefinition(String name, String description, double price, String currencyCode, List<String> imageURLs) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -33,7 +33,7 @@ public class MasterProduct {
     }
 
     //default imageless
-    public MasterProduct(String name, String description, double price, String currencyCode) {
+    public MasterProductDefinition(String name, String description, double price, String currencyCode) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -45,7 +45,7 @@ public class MasterProduct {
     }
 
     //price id
-    public MasterProduct(String name, String description, double price, String currencyCode, List<String> imageURLs, String priceId) {
+    public MasterProductDefinition(String name, String description, double price, String currencyCode, List<String> imageURLs, String priceId) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -57,7 +57,7 @@ public class MasterProduct {
     }
 
     //price id imageless
-    public MasterProduct(String name, String description, double price, String currencyCode, String priceId) {
+    public MasterProductDefinition(String name, String description, double price, String currencyCode, String priceId) {
         this.name = name;
         this.description = description;
         this.price = price;

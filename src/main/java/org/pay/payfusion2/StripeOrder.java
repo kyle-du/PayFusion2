@@ -6,25 +6,26 @@ import com.stripe.param.checkout.SessionCreateParams;
 
 public class StripeOrder implements Order {
 
-    private final MasterProduct product;
+    private final MasterProductDefinition product;
     private final long quantity;
-    private final String sessionID;
-    private final String sessionURL;
+    private final String orderID;
+    private final String orderURL;
+    private final PaymentType type = PaymentType.STRIPE;
 
-    public StripeOrder(MasterProduct product, long quantity) {
+    public StripeOrder(MasterProductDefinition product, long quantity) {
         this.product = product;
         this.quantity = quantity;
         String[] responses = createOrder();
-        this.sessionID = responses[0];
-        this.sessionURL = responses[1];
+        this.orderID = responses[0];
+        this.orderURL = responses[1];
     }
 
     public String[] createOrder() {
         SessionCreateParams params =
                 SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT) //specifies one-time payment, alt: subscription
-                .setSuccessUrl("https://example.com/returnUrl") //@TODO: placeholder
-                .setCancelUrl("https://example.com/cancelUrl")
+                .setSuccessUrl(Constants.RETURN_URL)
+                .setCancelUrl(Constants.CANCEL_URL)
                 .addLineItem(
                         SessionCreateParams.LineItem.builder()
                             .setQuantity((quantity))
@@ -44,7 +45,11 @@ public class StripeOrder implements Order {
         }
     }
 
-    public MasterProduct getProduct() {
+    public String capture() {
+        return "capture not required nor supported for Stripe";
+    }
+
+    public MasterProductDefinition getProduct() {
         return product;
     }
 
@@ -52,11 +57,15 @@ public class StripeOrder implements Order {
         return quantity;
     }
 
-    public String getID() {
-        return sessionID;
+    public String getOrderID() {
+        return orderID;
     }
 
-    public String getCheckoutURL() {
-        return sessionURL;
+    public String getOrderURL() {
+        return orderURL;
+    }
+
+    public PaymentType getType() {
+        return type;
     }
 }

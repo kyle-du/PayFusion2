@@ -1,19 +1,18 @@
 package org.pay.payfusion2;
 
-import java.io.OutputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Base64;
+import java.util.Scanner;
+
 import org.json.simple.parser.*;
 
 import org.json.*;
 
 public class OAuth {
-    public static String getAccessToken() {
+    public static String getPayPalAccessToken() {
         try {
-
             // Define your OAuth 2.0 configuration
             String clientId = Constants.PYPL_CLIENT_ID;
             String clientSecret = Constants.PYPL_CLIENT_SECRET;

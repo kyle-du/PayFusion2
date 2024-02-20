@@ -6,17 +6,12 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException, ParseException {
-        Constants.init();
+        System.out.println(System.getProperty("java.class.path"));
+        Constants.init("EAAAly_Wmr4FT5kvz6SYyjh9vCeqxQdzW_5gP2GBX_vj8zUn39TU3PE6JsW2U6O7");
         Constants.print();
 
-        //PayPal tests
-//        PayPalOrder testOrder = new PayPalOrder("Kaival", "Sammy Shah's bro", 1, 999);
-//        System.out.println(testOrder.getOrderLink() + " " + testOrder.getOrderID());
-//
-//        PayPalOrder.captureAnyOrder("4LJ092903D5166432");
-
         //Master Product Tests
-        MasterProduct p = new MasterProduct("sammy", "bar", 10.3, "usd", "price_1OkLkkBwTTupQWshgfihj4ug");
+        MasterProductDefinition p = new MasterProductDefinition("sammy", "bar", 10.3, "usd");
         System.out.println(p.getName());
         System.out.println(p.getDescription());
         System.out.println(p.getPrice());
@@ -26,10 +21,24 @@ public class Main {
 //        System.out.println(p.getStripePrice().getId());
 //        System.out.println(p.getStripePrice().getCurrency());
 //        System.out.println(p.getStripePrice().getUnitAmountDecimal());
+//
 
+////        PayPal tests
+        Order testOrder = new PayPalOrder(p, 2);
+        System.out.println(testOrder.getOrderID());
+        System.out.println(testOrder.getOrderURL());
+        System.out.println(testOrder.getType());
+
+//        System.out.println(PayPalOrder.captureAnyOrder("5MT58586YM361081W"));
+
+//
         //Stripe Tests
-        StripeOrder order = new StripeOrder(p, 1L);
-        System.out.println(order.getCheckoutURL());
+        StripeOrder order = new StripeOrder(p, 2);
+        System.out.println(order.getOrderURL());
+
+        //Square Tests
+        SquareOrder s = new SquareOrder(p, 2);
+        System.out.println(s.getOrderURL());
     }
 }
 
