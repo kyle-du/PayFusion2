@@ -39,7 +39,7 @@ public class SquareOrder implements Order {
         httpConn.setRequestMethod("POST");
 
         httpConn.setRequestProperty("Square-Version", "2024-01-18");
-        httpConn.setRequestProperty("Authorization", "Bearer EAAAly_Wmr4FT5kvz6SYyjh9vCeqxQdzW_5gP2GBX_vj8zUn39TU3PE6JsW2U6O7");
+        httpConn.setRequestProperty("Authorization", "Bearer " + Constants.SQUARE_ACCESS_TOKEN);
         httpConn.setRequestProperty("Content-Type", "application/json");
 
         httpConn.setDoOutput(true);
@@ -65,7 +65,6 @@ public class SquareOrder implements Order {
                 "      \"redirect_url\": \"" + Constants.RETURN_URL + "\"\n" +
                 "    }\n" +
                 "  }";
-        System.out.println(input);
         writer.write(input);
         writer.flush();
         writer.close();

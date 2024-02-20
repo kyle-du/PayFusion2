@@ -58,13 +58,17 @@ public class Constants {
     }
 
     public static void print() {
-        System.out.println(PYPL_CLIENT_ID);
-        System.out.println(PYPL_CLIENT_SECRET);
-        System.out.println(PYPL_ACCESS_TOKEN);
-        System.out.println(Stripe.apiKey);
-        System.out.println(SQUARE_ACCESS_TOKEN);
-        System.out.println(LOCATION_ID);
-        System.out.println(CANCEL_URL);
-        System.out.println(RETURN_URL);
+        System.out.println("PayPal Constants\n_________________");
+        System.out.println("Client ID " + PYPL_CLIENT_ID);
+        System.out.println("Client Secret " + PYPL_CLIENT_SECRET);
+        System.out.println("Access Token " + PYPL_ACCESS_TOKEN + "\n");
+        System.out.println("Stripe Constants\n_________________");
+        System.out.println("API Key " + Stripe.apiKey + "\n");
+        System.out.println("Square Constants\n_________________");
+        System.out.println("Access Token " + SQUARE_ACCESS_TOKEN);
+        System.out.println("Location ID " + LOCATION_ID + "\n");
+        System.out.println("Other Constants\n_________________");
+        System.out.println("Cancel URL " + CANCEL_URL);
+        System.out.println("Return URL " + RETURN_URL);
     }
 }
