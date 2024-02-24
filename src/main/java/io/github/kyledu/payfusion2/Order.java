@@ -1,4 +1,4 @@
-package org.pay.payfusion2;
+package io.github.kyledu.payfusion2;
 
 /**
  * Order interface defines order methods. To be implemented by specific payment gateway orders

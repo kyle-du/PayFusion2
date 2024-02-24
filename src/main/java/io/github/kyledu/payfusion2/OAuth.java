@@ -1,4 +1,4 @@
-package org.pay.payfusion2;
+package io.github.kyledu.payfusion2;
 
 import java.io.*;
 import java.net.HttpURLConnection;

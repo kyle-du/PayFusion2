@@ -1,4 +1,4 @@
-package org.pay.payfusion2;
+package io.github.kyledu.payfusion2;
 
 import org.json.JSONObject;
 
