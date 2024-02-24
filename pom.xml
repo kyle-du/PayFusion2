@@ -4,9 +4,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.pay</groupId>
+    <groupId>io.github.kyle-du</groupId>
     <artifactId>payfusion2</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
+
+    <name>PayFusion2</name>
+    <description>An integration utility package that bundles multiple payment services.</description>
+    <url>https://github.com/kyle-du/PayFusion2</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Kyle Du</name>
+            <email>kyledu123@gmail.com</email>
+            <organization>https://github.com/kyle-du</organization>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/kyle-du/PayFusion2.git</connection>
+        <developerConnection>scm:git:ssh://github.com:kyle-du/PayFusion2.get</developerConnection>
+        <url>http://github.com/kyle-du/PayFusion2/tree/main</url>
+    </scm>
+
     <build>
         <plugins>
             <plugin>
