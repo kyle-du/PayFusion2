@@ -1,7 +1,8 @@
 package org.pay.payfusion2;
 
-import java.io.IOException;
-
+/**
+ * Order interface defines order methods. To be implemented by specific payment gateway orders
+ */
 public interface Order {
 
     MasterProductDefinition getProduct();

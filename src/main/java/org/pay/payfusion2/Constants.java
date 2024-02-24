@@ -11,7 +11,6 @@ import java.nio.charset.StandardCharsets;
 /**
  * Collection of constants to use for API requests
  */
-
 public class Constants {
     public static String PYPL_CLIENT_ID;
     public static String PYPL_CLIENT_SECRET;
@@ -25,6 +24,7 @@ public class Constants {
 
     /**
      * Initializes runtime constants from PayFusionConstants.json file
+     *
      * @throws IOException
      * @throws ParseException
      */

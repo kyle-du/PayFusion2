@@ -1,10 +1,5 @@
 package org.pay.payfusion2;
 
-import com.squareup.square.*;
-import com.squareup.square.api.*;
-import com.squareup.square.exceptions.*;
-import com.squareup.square.models.*;
-import com.squareup.square.models.Error;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -16,6 +11,9 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.UUID;
 
+/**
+ * defines a Square Order object with its checkout URL
+ */
 public class SquareOrder implements Order {
     private final MasterProductDefinition product;
     private final long quantity;
@@ -31,7 +29,7 @@ public class SquareOrder implements Order {
         this.orderURL = responses[1];
     }
 
-    public String[] createOrder() throws IOException {
+    private String[] createOrder() throws IOException {
         String[] responses = new String[2];
 
         URL url = new URL("https://connect.squareupsandbox.com/v2/online-checkout/payment-links");
@@ -76,13 +74,17 @@ public class SquareOrder implements Order {
         Scanner s = new Scanner(responseStream).useDelimiter("\\A");
         String httpResponse = s.hasNext() ? s.next() : "";
 
-        System.out.println(httpResponse);
         JSONObject obj = new JSONObject(httpResponse.toString());
         responses[0] = obj.getJSONObject("payment_link").getString("order_id");
         responses[1] = obj.getJSONObject("payment_link").getString("url");
         return responses;
     }
 
+    /**
+     * Square quickpay no need for backend capturing
+     *
+     * @return String message
+     */
     public String capture() {
         return "capture not required nor supported for Square";
     }

@@ -4,16 +4,18 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Base64;
-import java.util.Scanner;
-
-import org.json.simple.parser.*;
 
 import org.json.*;
 
+/**
+ * OAuth processes; currently only supporting PayPal access token creation,
+ * others require manual input in PayFusionConstants.json file
+ */
 public class OAuth {
+
     public static String getPayPalAccessToken() {
         try {
-            // Define your OAuth 2.0 configuration
+            // Define OAuth 2.0 configuration
             String clientId = Constants.PYPL_CLIENT_ID;
             String clientSecret = Constants.PYPL_CLIENT_SECRET;
             String tokenEndpoint = "https://api-m.sandbox.paypal.com/v1/oauth2/token";

@@ -1,7 +1,5 @@
 package org.pay.payfusion2;
 
-//TODO: Reconfigure to match Stripe Product-Session model
-
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -12,6 +10,9 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * defines a PayPal Order object with its checkout URL
+ */
 class PayPalOrder implements Order {
 
     private final MasterProductDefinition product;
@@ -29,7 +30,7 @@ class PayPalOrder implements Order {
         this.orderURL = responses[1];
     }
 
-    public String[] createOrder() throws IOException {
+    private String[] createOrder() throws IOException {
         String[] responses = new String[2];
         URL url = new URL("https://api-m.sandbox.paypal.com/v2/checkout/orders");
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
@@ -87,13 +88,17 @@ class PayPalOrder implements Order {
         Scanner s = new Scanner(responseStream).useDelimiter("\\A");
         String httpResponse = s.hasNext() ? s.next() : "";
 
-//        System.out.println(httpResponse);
         JSONObject obj = new JSONObject(httpResponse.toString());
         responses[0] = obj.getString("id");
         responses[1] = obj.getJSONArray("links").getJSONObject(1).getString("href");
         return responses;
     }
 
+    /**
+     * for capturing a completed PayPal order
+     *
+     * @return String success/fail message
+     */
     public String capture() {
         try {
             URL url = new URL("https://api-m.sandbox.paypal.com/v2/checkout/orders/" + this.orderID + "/capture");
@@ -109,7 +114,6 @@ class PayPalOrder implements Order {
             Scanner s = new Scanner(responseStream).useDelimiter("\\A");
             String response = s.hasNext() ? s.next() : "";
 
-            System.out.println(response);
         } catch (IOException e) {
             return "capture fail";
         }
@@ -132,7 +136,6 @@ class PayPalOrder implements Order {
         String response = s.hasNext() ? s.next() : "";
 
         String[] placeholder = {""};
-        System.out.println(response);
         return placeholder;
     }
 

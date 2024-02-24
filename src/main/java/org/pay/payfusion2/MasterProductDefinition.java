@@ -9,6 +9,9 @@ import com.stripe.param.ProductCreateParams;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * product definition for use in order creation. one to many; product -> orders
+ */
 public class MasterProductDefinition {
 
     private final String name;
@@ -20,7 +23,15 @@ public class MasterProductDefinition {
     private final Price stripePrice;
     private final String stripePriceID;
 
-    //default
+    /**
+     * default constructor
+     *
+     * @param name
+     * @param description
+     * @param price
+     * @param currencyCode
+     * @param imageURLs
+     */
     public MasterProductDefinition(String name, String description, double price, String currencyCode, List<String> imageURLs) {
         this.name = name;
         this.description = description;
@@ -32,7 +43,14 @@ public class MasterProductDefinition {
         this.stripePriceID = stripePrice.getId();
     }
 
-    //default imageless
+    /**
+     * default imageless constructor
+     *
+     * @param name
+     * @param description
+     * @param price
+     * @param currencyCode
+     */
     public MasterProductDefinition(String name, String description, double price, String currencyCode) {
         this.name = name;
         this.description = description;
@@ -44,7 +62,16 @@ public class MasterProductDefinition {
         this.stripePriceID = stripePrice.getId();
     }
 
-    //price id
+    /**
+     * constructor for existing stripe price
+     *
+     * @param name
+     * @param description
+     * @param price
+     * @param currencyCode
+     * @param imageURLs
+     * @param priceId
+     */
     public MasterProductDefinition(String name, String description, double price, String currencyCode, List<String> imageURLs, String priceId) {
         this.name = name;
         this.description = description;
@@ -56,7 +83,15 @@ public class MasterProductDefinition {
         this.stripePriceID = priceId;
     }
 
-    //price id imageless
+    /**
+     * constructor for existing stripe price, imageless
+     *
+     * @param name
+     * @param description
+     * @param price
+     * @param currencyCode
+     * @param priceId
+     */
     public MasterProductDefinition(String name, String description, double price, String currencyCode, String priceId) {
         this.name = name;
         this.description = description;
@@ -72,15 +107,15 @@ public class MasterProductDefinition {
         ProductCreateParams params;
         if (imageURLs == null) {
             params = ProductCreateParams.builder()
-                            .setName(name)
-                            .setDescription(description)
-                            .build();
+                    .setName(name)
+                    .setDescription(description)
+                    .build();
         } else {
             params = ProductCreateParams.builder()
-                            .setName(name)
-                            .setDescription(description)
-                            .addAllImage(imageURLs)
-                            .build();
+                    .setName(name)
+                    .setDescription(description)
+                    .addAllImage(imageURLs)
+                    .build();
         }
         try {
             return Product.create(params);

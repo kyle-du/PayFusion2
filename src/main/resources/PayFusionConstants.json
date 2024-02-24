@@ -1,0 +1,16 @@
+{
+  "PayPal": {
+    "PYPL_CLIENT_ID": "x",
+    "PYPL_CLIENT_SECRET": "x"
+  },
+  "Stripe": {
+    "STRIPE_KEY": "x"
+  },
+  "Square": {
+    "LOCATION_ID": "x"
+  },
+  "All": {
+    "CANCEL_URL": "https://example.com/cancel",
+    "RETURN_URL": "https://example.com/return"
+  }
+}

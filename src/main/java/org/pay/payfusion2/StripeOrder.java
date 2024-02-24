@@ -4,6 +4,9 @@ import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
 
+/**
+ * defines a Stripe Order object with its checkout URL
+ */
 public class StripeOrder implements Order {
 
     private final MasterProductDefinition product;
@@ -20,18 +23,18 @@ public class StripeOrder implements Order {
         this.orderURL = responses[1];
     }
 
-    public String[] createOrder() {
+    private String[] createOrder() {
         SessionCreateParams params =
                 SessionCreateParams.builder()
-                .setMode(SessionCreateParams.Mode.PAYMENT) //specifies one-time payment, alt: subscription
-                .setSuccessUrl(Constants.RETURN_URL)
-                .setCancelUrl(Constants.CANCEL_URL)
-                .addLineItem(
-                        SessionCreateParams.LineItem.builder()
-                            .setQuantity((quantity))
-                            .setPrice(product.getStripePriceID())
-                            .build())
-                .build();
+                        .setMode(SessionCreateParams.Mode.PAYMENT) //specifies one-time payment, alt: subscription
+                        .setSuccessUrl(Constants.RETURN_URL)
+                        .setCancelUrl(Constants.CANCEL_URL)
+                        .addLineItem(
+                                SessionCreateParams.LineItem.builder()
+                                        .setQuantity((quantity))
+                                        .setPrice(product.getStripePriceID())
+                                        .build())
+                        .build();
         try {
             Session session = Session.create(params);
             String[] responses = new String[2];
@@ -45,6 +48,11 @@ public class StripeOrder implements Order {
         }
     }
 
+    /**
+     * Stripe quickpay no need for backend capturing
+     *
+     * @return String message
+     */
     public String capture() {
         return "capture not required nor supported for Stripe";
     }
