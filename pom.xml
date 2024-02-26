@@ -6,7 +6,7 @@
 
     <groupId>io.github.kyle-du</groupId>
     <artifactId>payfusion2</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>PayFusion2</name>
     <description>An integration utility package that bundles multiple payment services.</description>
