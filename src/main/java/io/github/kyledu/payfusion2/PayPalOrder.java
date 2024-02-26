@@ -13,7 +13,7 @@ import java.util.Scanner;
 /**
  * defines a PayPal Order object with its checkout URL
  */
-class PayPalOrder implements Order {
+public class PayPalOrder implements Order {
 
     private final MasterProductDefinition product;
     private final long quantity;
@@ -95,6 +95,8 @@ class PayPalOrder implements Order {
     }
 
     /**
+     * DEPRECATED
+     *
      * for capturing a completed PayPal order
      *
      * @return String success/fail message
@@ -120,23 +122,30 @@ class PayPalOrder implements Order {
         return "capture success";
     }
 
-    //for testing
-    public static String[] captureAnyOrder(String orderID) throws IOException {
-        URL url = new URL("https://api-m.sandbox.paypal.com/v2/checkout/orders/" + orderID + "/capture");
-        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
-        httpConn.setRequestMethod("POST");
+    /**
+     * for capturing any completed PayPalOrder using orderID
+     * @param orderID
+     * @return success/fail+msg
+     */
+    public static String captureAnyOrder(String orderID) {
+        try {
+            URL url = new URL("https://api-m.sandbox.paypal.com/v2/checkout/orders/" + orderID + "/capture");
+            HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+            httpConn.setRequestMethod("POST");
 
-        httpConn.setRequestProperty("Content-Type", "application/json");
-        httpConn.setRequestProperty("Authorization", "Bearer " + Constants.PYPL_ACCESS_TOKEN);
+            httpConn.setRequestProperty("Content-Type", "application/json");
+            httpConn.setRequestProperty("Authorization", "Bearer " + Constants.PYPL_ACCESS_TOKEN);
 
-        InputStream responseStream = httpConn.getResponseCode() / 100 == 2
-                ? httpConn.getInputStream()
-                : httpConn.getErrorStream();
-        Scanner s = new Scanner(responseStream).useDelimiter("\\A");
-        String response = s.hasNext() ? s.next() : "";
+            InputStream responseStream = httpConn.getResponseCode() / 100 == 2
+                    ? httpConn.getInputStream()
+                    : httpConn.getErrorStream();
+            Scanner s = new Scanner(responseStream).useDelimiter("\\A");
+            String response = s.hasNext() ? s.next() : "";
 
-        String[] placeholder = {""};
-        return placeholder;
+            return "success";
+        } catch (IOException e) {
+            return "fail: " + e.getStackTrace();
+        }
     }
 
     public MasterProductDefinition getProduct() {
