@@ -1,5 +1,5 @@
 # PayFusion
-A utility package for payment services. Allows for easy integration with 3 different card payment gateway companies: PayPal, Stripe, and Square.
+A utility package for payment services. Supports a standard set of interfaces to abstract PayPal, Stripe, and Square order creation and capturing.
 
 Usage
 - Add a file ```PayFusionConstants.json``` to classpath. Example of formatting on GitHub under ```src/main/resources```.
@@ -10,3 +10,5 @@ Usage
     - All have ```MasterProductionDefinition```, ```quantity``` as parameters.
 - Run ```getOrderURL()``` to get checkout URL. 
 
+Maven Link: 
+https://central.sonatype.com/artifact/io.github.kyle-du/payfusion2/overview
