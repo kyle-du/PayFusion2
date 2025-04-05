@@ -10,5 +10,4 @@ Usage
     - All have ```MasterProductionDefinition```, ```quantity``` as parameters.
 - Run ```getOrderURL()``` to get checkout URL. 
 
-Maven Link: 
-https://central.sonatype.com/artifact/io.github.kyle-du/payfusion2/overview
+Maven Link: [here](https://central.sonatype.com/artifact/io.github.kyle-du/payfusion2/overview)
